@@ -9,5 +9,10 @@ return array(
     'DB_USER' => 'root', // 用户名
     'DB_PWD' => '', // 密码
     'DB_PORT' => 3306, // 端口
-    'DB_PREFIX' => 'rachel_'
+    'DB_PREFIX' => 'rachel_',
+    'DATA' => array(
+        'code' => 0,
+        'msg' => '',
+        'data' => array()
+    )
 );

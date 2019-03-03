@@ -8,10 +8,9 @@
 
 namespace Admin\Controller;
 
-class AdminController extends BaseController
+use Think\Controller;
+
+class BaseController extends Controller
 {
-    public function index()
-    {
-        $this->display();
-    }
+
 }
