@@ -4,88 +4,80 @@
     <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
           name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <title>oexam-管理教师</title>
-
-    <include file="Public/headerlist"/>
-
-    <link href="__PUBLIC__/assets/stylesheets/style1.css" rel="stylesheet" type="text/css"/>
-
+    <title>oexam-后台管理</title>
+    <include file="Public/header"/>
 </head>
 <body>
-<div id="wrap">
-    <include file="Public/top_a"/>
-    <div class="container-fluid">
-        <include file="Public/sidemenu"/>
-        <!-- Main window -->
-        <div class="main_container" id="users_page">
+<include file="Public/top_t"/>
+<include file="Public/menu"/>
+<div class="container">
+    <header class="clearfix" style="position: relative; left: 32px;">
+        <h1 style="position: relative;left:30%;color:#47a3da ;font-family: 微软雅黑">
+            欢迎{$Think.session.admin}来到rachel环球影院管理系统</h1>
+    </header>
+    <div class="main" style="margin-top: 50px">
+        <section style="margin-left: 50px">
+            <button id="showLeft" style="font-family: 微软雅黑;font-size: 20px">电影管理</button>
+            <button id="showRight" style="font-family: 微软雅黑;font-size: 20px">用户管理</button>
+        </section>
+    </div>
+</div>
+<div style="position: relative;left: 60%;top: -250px;">
+    <a href="{:U('Test/index')}"><img alt="" height="240px" src="__PUBLIC__/assets/images/试题1.png" width="240px"></a>
+    <br>
+    <a href="{:U('Test/index')}"
+       style="position: relative;left:60px;top:20px; color: #47a3da; font-family: 微软雅黑;font-size: 30px">生成试卷</a>
+</div>
+<script src="__PUBLIC__/assets/js/classie.js"></script>
+<script>
+    var menuLeft = document.getElementById('cbp-spmenu-s1'),
+        menuRight = document.getElementById('cbp-spmenu-s2'),
+        menuTop = document.getElementById('cbp-spmenu-s3'),
+        menuBottom = document.getElementById('cbp-spmenu-s4'),
+        showLeft = document.getElementById('showLeft'),
+        showRight = document.getElementById('showRight'),
+        showTop = document.getElementById('showTop'),
+        showBottom = document.getElementById('showBottom'),
+        body = document.body;
 
-            <div class="row-fluid">
+    showLeft.onclick = function () {
+        classie.toggle(this, 'active');
+        classie.toggle(menuLeft, 'cbp-spmenu-open');
+        disableOther('showLeft');
+    };
+    showRight.onclick = function () {
+        classie.toggle(this, 'active');
+        classie.toggle(menuRight, 'cbp-spmenu-open');
+        disableOther('showRight');
+    };
+    showTop.onclick = function () {
+        classie.toggle(this, 'active');
+        classie.toggle(menuTop, 'cbp-spmenu-open');
+        disableOther('showTop');
+    };
+    showBottom.onclick = function () {
+        classie.toggle(this, 'active');
+        classie.toggle(menuBottom, 'cbp-spmenu-open');
+        disableOther('showBottom');
+    };
 
-                <h2 class="heading">
-                    教师列表
-                </h2>
-            </div> <!-- /row-fluid -->
-
-            <!--此处往下为代码改写部分-->
-            <div class="row-fluid">
-                <div class="widget widget-padding span12">
-                    <div class="widget-header">
-                        <i class="icon-group"></i>
-                        <h5>教师信息列表</h5>
-                        <div class="widget-buttons">
-                            <!--<a href="#" data-title="Add User" data-toggle="modal" data-target="#example_modal"><i class="icon-plus"></i></a>-->
-                            <a class="collapse" data-collapsed="false" data-title="Collapse" href="#"><i
-                                    class="icon-chevron-up"></i></a>
-                        </div>
-                    </div>
-                    <div class="widget-body table-responsive ">
-                        <table class="table table-condensed table-striped table-bordered dataTable" id="users">
-                            <thead>
-                            <tr>
-                                <th>用户名</th>
-                                <th>真实姓名</th>
-                                <th>联系方式</th>
-                                <th>邮箱</th>
-                                <th>操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <volist id="val" name="list">
-                                <tr>
-                                    <td><a href="{:U('Admin/typelist')}?id={$val['aid']}&name={$val['name']}">{$val['name']}</a>
-                                    </td>
-                                    <td>{$val['realname']}</td>
-                                    <td> {$val['telephone']}</td>
-                                    <td>
-                                        {$val['email']}
-                                    </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
-                                                操作
-                                                <span class="caret"></span>
-                                            </a>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li><a href="{:U('Admin/resetpwd')}?id={$val['aid']}"><i
-                                                        class="icon-exchange"></i> 重置密码</a></li>
-                                                <li><a href="{:U('Admin/del')}?id={$val['aid']}"
-                                                       onclick="return confirm('你确定要删除吗？')"><i class="icon-trash"></i>
-                                                    删除</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </volist>
-                            </tbody>
-                        </table>
-                    </div> <!-- /widget-body -->
-                </div> <!-- /widget -->
-            </div> <!-- /row-fluid -->
-
-        </div>
-        <!-- /Main window -->
-
-    </div><!--/.fluid-container-->
-
+    function disableOther(button) {
+        if (button !== 'showLeft') {
+            classie.toggle(showLeft, 'disabled');
+        }
+        if (button !== 'showRight') {
+            classie.toggle(showRight, 'disabled');
+        }
+        if (button !== 'showTop') {
+            classie.toggle(showTop, 'disabled');
+        }
+        if (button !== 'showBottom') {
+            classie.toggle(showBottom, 'disabled');
+        }
+    }
+</script>
 </body>
 </html>
+
+
+
