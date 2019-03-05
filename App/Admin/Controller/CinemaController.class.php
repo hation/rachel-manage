@@ -21,7 +21,7 @@ class CinemaController extends BaseController
         else {
             $ex['flag'] = 0;
         }
-        echo json_encode($ex, JSON_UNESCAPED_UNICODE);
+        $this->jsonReturn($ex);
     }
 
     public function addCinema()
@@ -42,7 +42,7 @@ class CinemaController extends BaseController
         } else {
             $res['isValidCinema'] = 0;
         }
-        echo $this->jsonReturn($res);
+        $this->jsonReturn($res);
     }
 
     public function updateCinema()
@@ -50,6 +50,7 @@ class CinemaController extends BaseController
         $data['id'] = I('post.cinema_id');
         $data['name'] = I('post.update_cinema_name');
         $data['address'] = I('post.update_cinema_address');
+        $data = $this->addCreateTime($data);
         $res = M($this->CINEMA_TABLE)->save($data);
         $this->checkAndReturn($res, "修改成功", "修改失败");
     }

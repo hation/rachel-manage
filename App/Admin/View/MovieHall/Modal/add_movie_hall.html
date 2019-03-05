@@ -1,0 +1,43 @@
+<!--修改题库名模态框-->
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade bs-example-modal-sm" id="add_movie_hall"
+     role="dialog"
+     style="margin-top: 8%;height: 200px" tabindex="-1">
+
+    <div class="modal-sm"
+         style="margin-top:-30px; z-index: 1050; width: auto;margin-right: auto;margin-left: auto;right: auto;left: 50%;padding: 40px 10px 30px;">
+        <div style="border-radius: 5px;">
+            <div style="  height: auto; padding-bottom:0px; border-bottom:20px;padding-left:0px;padding-right:0px;background-color: #ffffff">
+                <button aria-label="Close" class="close" data-dismiss="modal" style="height:30px;" type="button">
+                    <span
+                            style="height:40px; margin-top: 20px;padding:0 40px 20px 0px;background-image: url('__PUBLIC__/assets/images/close.jpg') ;background-size:100%;background-repeat: no-repeat"></span>
+                </button>
+                <form action="{:U('addMovieHall')}" enctype="multipart/form-data" method="post">
+                    <div style="width: auto;height: auto">
+                        <label style="display: table-cell;"><p
+                                style="position: relative;top:20px;left: 150px;font-family: 微软雅黑">影院名称</p></label>
+                        <div style="display: table-cell">
+                            <select id="cinema" name="cinema"
+                                    style="margin-top: 50px;width: 180px; height: 30px; font-size: 10px;position: relative;left: 176px;font-family: 微软雅黑">
+
+                            </select>
+                        </div>
+                    </div>
+                    <div style="width: auto;height: auto">
+                        <label for="add_movie_hall_name" style="display: table-cell;"><p
+                                style="position: relative;left: 150px;font-family: 微软雅黑">影厅名称</p></label>
+                        <div style="display: table-cell">
+                            <input class="form-control" id="add_movie_hall_name" name="add_movie_hall_name"
+                                   placeholder="请输入影厅名称" required
+                                   style="width: 180px; height: 30px; font-size: 10px;position: relative;left: 176px;font-family: 微软雅黑"
+                                   type="text">
+                        </div>
+                    </div>
+                    <input class="btn btn-info"
+                           style="position:relative;left:200px;margin-top:10px; width:180px;font-family: 微软雅黑;background-color:#0090ff;font-size:10px"
+                           type="submit" value="添加">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
