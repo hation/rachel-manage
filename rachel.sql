@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 04/03/2019 08:00:06
+ Date: 06/03/2019 00:25:59
 */
 
 SET NAMES utf8mb4;
@@ -33,7 +33,7 @@ CREATE TABLE `rachel_admins`  (
 -- ----------------------------
 -- Records of rachel_admins
 -- ----------------------------
-INSERT INTO `rachel_admins` VALUES (1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL);
+INSERT INTO `rachel_admins` VALUES (1, 'zmx', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for rachel_banners
@@ -56,7 +56,14 @@ CREATE TABLE `rachel_cinema`  (
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '影院地址',
   `create_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of rachel_cinema
+-- ----------------------------
+INSERT INTO `rachel_cinema` VALUES (1, '1', '1', '2019-03-04 21:40:37');
+INSERT INTO `rachel_cinema` VALUES (2, '环球', '北京', '2019-03-05 00:05:11');
+INSERT INTO `rachel_cinema` VALUES (6, 'aaaa', 'aaa', '2019-03-05 23:57:04');
 
 -- ----------------------------
 -- Table structure for rachel_cinema_movies_relation
@@ -91,8 +98,16 @@ CREATE TABLE `rachel_movie_hall`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '影厅id',
   `hall` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '影厅名',
   `create_time` datetime(0) NULL DEFAULT NULL,
+  `cinema_id` int(11) NOT NULL COMMENT '影院id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of rachel_movie_hall
+-- ----------------------------
+INSERT INTO `rachel_movie_hall` VALUES (1, '国语3D', '2019-03-05 23:04:38', 1);
+INSERT INTO `rachel_movie_hall` VALUES (2, '英语2D', '2019-03-05 23:20:20', 2);
+INSERT INTO `rachel_movie_hall` VALUES (4, 'xihuanss', '2019-03-06 00:19:05', 2);
 
 -- ----------------------------
 -- Table structure for rachel_movies
