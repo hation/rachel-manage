@@ -33,6 +33,27 @@ class CinemaController extends BaseController
         $this->checkAndReturn($res, "添加成功", '添加失败');
     }
 
+    public function isValidCinema()
+    {
+        $data['id'] = I('post.id');
+        $res = M($this->CINEMA_TABLE)->where($data)->find();
+        if ($res) {
+            $res['isValidCinema'] = 1;
+        } else {
+            $res['isValidCinema'] = 0;
+        }
+        echo $this->jsonReturn($res);
+    }
+
+    public function updateCinema()
+    {
+        $data['id'] = I('post.cinema_id');
+        $data['name'] = I('post.update_cinema_name');
+        $data['address'] = I('post.update_cinema_address');
+        $res = M($this->CINEMA_TABLE)->save($data);
+        $this->checkAndReturn($res, "修改成功", "修改失败");
+    }
+
     public function del()
     {
         $id = I('get.id');

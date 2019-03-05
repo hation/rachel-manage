@@ -1,6 +1,6 @@
 <!--修改题库名模态框-->
 
-<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade bs-example-modal-sm" id="add_cinema"
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade bs-example-modal-sm" id="update_cinema"
      role="dialog"
      style="margin-top: 8%;height: 200px" tabindex="-1">
 
@@ -12,12 +12,14 @@
                     <span
                             style="height:40px; margin-top: 20px;padding:0 40px 20px 0px;background-image: url('__PUBLIC__/assets/images/close.jpg') ;background-size:100%;background-repeat: no-repeat"></span>
                 </button>
-                <form action="{:U('addCinema')}" enctype="multipart/form-data" method="post">
+                <form action="{:U('updateCinema')}" enctype="multipart/form-data" method="post">
+                    <input class="cinema_id" name="cinema_id" type="hidden">
                     <div style="width: auto;height: auto">
-                        <label for="add_cinema_name" style="display: table-cell;"><p
+                        <label for="update_cinema_name" style="display: table-cell;"><p
                                 style="position: relative;top:20px;left: 150px;font-family: 微软雅黑">影院名称</p></label>
                         <div style="display: table-cell">
-                            <input class="form-control" id="add_cinema_name" name="add_cinema_name" placeholder="请输入影院名"
+                            <input class="form-control" id="update_cinema_name" name="update_cinema_name"
+                                   placeholder="请输入影院名"
                                    required
                                    style="margin-top: 50px;width: 180px; height: 30px; font-size: 10px;position: relative;left: 176px;font-family: 微软雅黑"
                                    type="text">
@@ -27,23 +29,23 @@
                         </div>
                     </div>
                     <div style="width: auto;height: auto">
-                        <label for="add_cinema_address" style="display: table-cell;"><p
+                        <label for="update_cinema_address" style="display: table-cell;"><p
                                 style="position: relative;left: 150px;font-family: 微软雅黑">影院地址</p></label>
                         <div style="display: table-cell">
-                            <input class="form-control" id="add_cinema_address" name="add_cinema_address"
+                            <input class="form-control" id="update_cinema_address" name="update_cinema_address"
                                    placeholder="请输入影院地址" required
                                    style="width: 180px; height: 30px; font-size: 10px;position: relative;left: 176px;font-family: 微软雅黑"
                                    type="text">
                         </div>
                     </div>
                     <script type="text/javascript">
-                        $("#add_cinema_name").mouseout(function () {
+                        $("#update_cinema_name").mouseout(function () {
                             $("#cinema_name_status").removeAttr("class");
-                            var add_cinema_name = $("#add_cinema_name").val().trim();
-                            if (add_cinema_name != "")
+                            var update_cinema_name = $("#update_cinema_name").val().trim();
+                            if (update_cinema_name != "")
                                 $.ajax({
                                     url: "{:U('cinemaIsValid')}",
-                                    data: {add_cinema_name: add_cinema_name},
+                                    data: {add_cinema_name: update_cinema_name},
                                     type: 'post',
                                     cache: false,
                                     dataType: 'json',
@@ -60,7 +62,7 @@
                     </script>
                     <input class="btn btn-info"
                            style="position:relative;left:200px;margin-top:10px; width:180px;font-family: 微软雅黑;background-color:#0090ff;font-size:10px"
-                           type="submit" value="添加">
+                           type="submit" value="修改">
                 </form>
             </div>
         </div>

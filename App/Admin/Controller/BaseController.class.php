@@ -26,4 +26,9 @@ class BaseController extends Controller
             $this->error($errorMsg);
         }
     }
+
+    public function jsonReturn($data)
+    {
+        return json_encode($data, JSON_UNESCAPED_UNICODE);;
+    }
 }

@@ -68,7 +68,8 @@
                                                 <li><a href="{:U('del')}?id={$val['id']}"
                                                        onclick="return confirm('你确定要删除吗？')"><i class="icon-trash"></i>删除</a>
                                                 </li>
-                                                <li><a class="tp" data-target="#tpedit" data-toggle="modal" href="#"
+                                                <li><a class="update" data-target="#update_cinema" data-toggle="modal"
+                                                       href="#"
                                                        id="{$val['id']}"><i class=" icon-edit"></i>修改</a></li>
                                             </ul>
                                         </div>
@@ -86,29 +87,26 @@
 
     </div><!--/.fluid-container-->
 </div>
-<include file="Public/model_type"/>
+<include file="Public/update_cinema"/>
 <include file="Public/add_cinema"/>
 <script type="text/javascript">
-    $(".tp").click(function () {
-        var typeid = $(this).attr('id');
-        $(".tikuid").attr('value', typeid);
-        $("#flagtpname").removeAttr("class");
+    $(".update").click(function () {
+        var id = $(this).attr('id');
+        $(".cinema_id").attr('value', id);
+        $("#update_cinema_name").removeAttr("class");
         $.ajax({
-            url: "{:U('Type/check')}",
-            data: {typeid: typeid},
+            url: "{:U('isValidCinema')}",
+            data: {id: id},
             type: 'post',
             cache: false,
             dataType: 'json',
-            success: function (data) {
-                if (data.flag) {
-                    $("#tpname").attr('placeholder', data.typename);
+            success: function (res) {
+                if (res['isValidCinema']) {
+                    $("#update_cinema_name").attr('value', res['name']);
+                    $("#update_cinema_address").attr('value', res['address']);
                 }
             }
         });
-    });
-    $(".app").click(function () {
-        var typeid = $(this).attr('rel');
-        $(".appid").attr('value', typeid);
     });
 </script>
 </body>
