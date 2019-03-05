@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>rachel-影厅列表</title>
+
+    <link href="__PUBLIC__/assets/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <include file="Public/headerlist"/>
+    <link href="__PUBLIC__/assets/stylesheets/style1.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="wrap">
+    <include file="Public/top"/>
+    <div class="container-fluid">
+
+        <!-- Main window -->
+        <div class="main_container" id="users_page">
+
+            <div class="row-fluid">
+
+                <h2 class="heading">
+                    影厅列表
+                </h2>
+            </div> <!-- /row-fluid -->
+
+            <!--此处往下为代码改写部分-->
+            <div class="row-fluid">
+                <div class="widget widget-padding span12">
+                    <div class="widget-header">
+                        <i class="icon-group"></i>
+                        <h5><a href="{:U('Admin/index')}">首页</a></h5><h5>/</h5> <h5 data-target="#add_cinema"
+                                                                                    data-toggle="modal">添加影厅</h5>
+                        <div class="widget-buttons">
+                            <a class="collapse" data-collapsed="false" data-title="Collapse" href="#"><i
+                                    class="icon-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-bodicon-group table-responsive " style="padding-bottom: 45px">
+                        <table class="table table-condensed table-striped table-bordered dataTable" id="users">
+                            <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>影院名</th>
+                                <th>影厅名</th>
+                                <th>更新时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <volist id="value" name="list">
+                                <notempty name="value['movie_hall']">
+                                    <foreach item="val" name="value['movie_hall']">
+                                        <tr>
+                                            <td>{$val['id']}</td>
+                                            <td>
+                                                <a href="{:U('Type/total')}?id={$val['typeid']}&name={$val['typename']}">{$value['name']}</a>
+                                            </td>
+                                            <td>{$val['hall']}</td>
+                                            <td>{$val['create_time']}</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-small dropdown-toggle" data-toggle="dropdown"
+                                                       href="#">
+                                                        操作
+                                                        <span class="caret"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-right">
+                                                        <li><a href="{:U('del')}?id={$val['id']}"
+                                                               onclick="return confirm('你确定要删除吗？')"><i
+                                                                class="icon-trash"></i>删除</a>
+                                                        </li>
+                                                        <li><a class="update" data-target="#update_cinema"
+                                                               data-toggle="modal"
+                                                               href="#"
+                                                               id="{$val['id']}"><i class=" icon-edit"></i>修改</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </foreach>
+                                </notempty>
+                            </volist>
+                            </tbody>
+                        </table>
+                    </div> <!-- /widget-body -->
+                </div> <!-- /widget -->
+            </div> <!-- /row-fluid -->
+
+        </div>
+        <!-- /Main window -->
+
+    </div><!--/.fluid-container-->
+</div>
+<include file="Cinema/Modal/update_cinema"/>
+<include file="Cinema/Modal/add_cinema"/>
+<script type="text/javascript">
+    $(".update").click(function () {
+        var id = $(this).attr('id');
+        $(".cinema_id").attr('value', id);
+        $("#update_cinema_name").removeAttr("class");
+        $.ajax({
+            url: "{:U('isValidCinema')}",
+            data: {id: id},
+            type: 'post',
+            cache: false,
+            dataType: 'json',
+            success: function (res) {
+                if (res['isValidCinema']) {
+                    $("#update_cinema_name").attr('value', res['name']);
+                    $("#update_cinema_address").attr('value', res['address']);
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
