@@ -10,6 +10,7 @@ class BaseController extends Controller
     public $CINEMAS_TABLE = "cinemas";
     public $ADMINS_TABLE = "admins";
     public $MOVIE_HALLS_TABLE = "movie_halls";
+    public $MOVIES_TABLE = "movies";
 
 
     public $default_list = 'list';
