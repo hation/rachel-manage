@@ -3,7 +3,7 @@
 namespace Admin\Model;
 class MovieHallModel extends BaseModel
 {
-    protected $tableName = 'movie_hall';
+    protected $tableName = 'movie_halls';
     protected $_link = array(
         'cinema' => array(
             'mapping_type' => self::BELONGS_TO,

@@ -3,7 +3,7 @@
 namespace Admin\Model;
 class CinemaModel extends BaseModel
 {
-    protected $tableName = "cinema";
+    protected $tableName = "cinemas";
     protected $_link = array(
         'movie_hall' => array(
             'mapping_type' => self::HAS_MANY,

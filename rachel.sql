@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 06/03/2019 00:25:59
+ Date: 06/03/2019 20:32:43
 */
 
 SET NAMES utf8mb4;
@@ -47,25 +47,6 @@ CREATE TABLE `rachel_banners`  (
 ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for rachel_cinema
--- ----------------------------
-DROP TABLE IF EXISTS `rachel_cinema`;
-CREATE TABLE `rachel_cinema`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '影院id',
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '影院名',
-  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '影院地址',
-  `create_time` datetime(0) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of rachel_cinema
--- ----------------------------
-INSERT INTO `rachel_cinema` VALUES (1, '1', '1', '2019-03-04 21:40:37');
-INSERT INTO `rachel_cinema` VALUES (2, '环球', '北京', '2019-03-05 00:05:11');
-INSERT INTO `rachel_cinema` VALUES (6, 'aaaa', 'aaa', '2019-03-05 23:57:04');
-
--- ----------------------------
 -- Table structure for rachel_cinema_movies_relation
 -- ----------------------------
 DROP TABLE IF EXISTS `rachel_cinema_movies_relation`;
@@ -76,6 +57,25 @@ CREATE TABLE `rachel_cinema_movies_relation`  (
   `create_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Table structure for rachel_cinemas
+-- ----------------------------
+DROP TABLE IF EXISTS `rachel_cinemas`;
+CREATE TABLE `rachel_cinemas`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '影院id',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '影院名',
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '影院地址',
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of rachel_cinemas
+-- ----------------------------
+INSERT INTO `rachel_cinemas` VALUES (1, '1', '1', '2019-03-04 21:40:37');
+INSERT INTO `rachel_cinemas` VALUES (2, '环球', '北京', '2019-03-05 00:05:11');
+INSERT INTO `rachel_cinemas` VALUES (6, 'aaaa', 'aaa', '2019-03-05 23:57:04');
 
 -- ----------------------------
 -- Table structure for rachel_comments
@@ -91,10 +91,10 @@ CREATE TABLE `rachel_comments`  (
 ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for rachel_movie_hall
+-- Table structure for rachel_movie_halls
 -- ----------------------------
-DROP TABLE IF EXISTS `rachel_movie_hall`;
-CREATE TABLE `rachel_movie_hall`  (
+DROP TABLE IF EXISTS `rachel_movie_halls`;
+CREATE TABLE `rachel_movie_halls`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '影厅id',
   `hall` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '影厅名',
   `create_time` datetime(0) NULL DEFAULT NULL,
@@ -103,11 +103,11 @@ CREATE TABLE `rachel_movie_hall`  (
 ) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of rachel_movie_hall
+-- Records of rachel_movie_halls
 -- ----------------------------
-INSERT INTO `rachel_movie_hall` VALUES (1, '国语3D', '2019-03-05 23:04:38', 1);
-INSERT INTO `rachel_movie_hall` VALUES (2, '英语2D', '2019-03-05 23:20:20', 2);
-INSERT INTO `rachel_movie_hall` VALUES (4, 'xihuanss', '2019-03-06 00:19:05', 2);
+INSERT INTO `rachel_movie_halls` VALUES (1, '国语3D', '2019-03-05 23:04:38', 1);
+INSERT INTO `rachel_movie_halls` VALUES (2, '英语2D', '2019-03-05 23:20:20', 2);
+INSERT INTO `rachel_movie_halls` VALUES (4, 'xihuanss', '2019-03-06 00:19:05', 2);
 
 -- ----------------------------
 -- Table structure for rachel_movies
@@ -127,10 +127,10 @@ CREATE TABLE `rachel_movies`  (
 ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for rachel_order
+-- Table structure for rachel_orders
 -- ----------------------------
-DROP TABLE IF EXISTS `rachel_order`;
-CREATE TABLE `rachel_order`  (
+DROP TABLE IF EXISTS `rachel_orders`;
+CREATE TABLE `rachel_orders`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单id',
   `order_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单号',
   `user_id` int(11) NOT NULL COMMENT '用户id',

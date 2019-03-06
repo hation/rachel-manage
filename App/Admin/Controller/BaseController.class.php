@@ -7,9 +7,10 @@ use Think\Controller;
 
 class BaseController extends Controller
 {
-    public $CINEMA_TABLE = "cinema";
+    public $CINEMAS_TABLE = "cinemas";
     public $ADMINS_TABLE = "admins";
-    public $MOVIE_HALL_TABLE = "movie_hall";
+    public $MOVIE_HALLS_TABLE = "movie_halls";
+
 
     public $default_list = 'list';
 
