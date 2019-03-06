@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 06/03/2019 20:32:43
+ Date: 06/03/2019 22:38:47
 */
 
 SET NAMES utf8mb4;
@@ -122,9 +122,14 @@ CREATE TABLE `rachel_movies`  (
   `release_time` datetime(0) NULL DEFAULT NULL COMMENT '上映时间',
   `play_time` int(255) NULL DEFAULT NULL COMMENT '播放时间',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `price` decimal(10, 2) NULL DEFAULT NULL COMMENT '影片价格',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of rachel_movies
+-- ----------------------------
+INSERT INTO `rachel_movies` VALUES (1, '阿丽塔', 'sample.jpg', 1, 'sa', '2019-03-06 20:55:12', 100, '2019-03-28 20:55:19');
+INSERT INTO `rachel_movies` VALUES (6, '是', '2019-03-06/5c7fda341aa1f.png', 0, '是', '2019-03-09 00:00:00', 0, '2019-03-06 22:33:24');
 
 -- ----------------------------
 -- Table structure for rachel_orders

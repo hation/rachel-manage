@@ -1,4 +1,5 @@
 <?php
+header("Content-type:text/html;charset=utf-8");
 function readExcel($filePath)
 {
     header("Content-type:text/html;charset=utf-8");
@@ -37,4 +38,17 @@ function readExcel($filePath)
                 //echo iconv('utf-8','gb2312', $val)."\t"; */
     }
     return $data;
+}
+
+function uploadImage($file, $rootPath = './Public/Upload/')
+{
+    $upload = new \Think\Upload();// 实例化上传类
+    $upload->maxSize = 3145728;// 设置附件上传大小
+    $upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+    $upload->rootPath = $rootPath; // 设置附件上传根目录
+    $info = $upload->uploadOne($file);
+    if (!$info) {// 上传错误提示错误信息
+        $this->error($upload->getError());
+    }
+    return $info;
 }

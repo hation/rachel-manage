@@ -27,12 +27,12 @@ class BaseController extends Controller
         return $data;
     }
 
-    public function checkAndReturn($result, $successMsg, $errorMsg)
+    public function checkAndReturn($result, $successMsg, $errorMsg, $successRedirect = '', $errorRedirect = '')
     {
         if ($result) {
-            $this->success($successMsg);
+            $this->success($successMsg, $successRedirect);
         } else {
-            $this->error($errorMsg);
+            $this->error($errorMsg, $errorRedirect);
         }
     }
 
