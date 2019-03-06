@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8"/>
+    <title>更新电影</title>
+    <link href="__PUBLIC__/assets/css/xunlei.css" rel="stylesheet">
+    <link href="__PUBLIC__/assets/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/assets/stylesheets/main.css" rel="stylesheet">
+    <meta content="IE=7" http-equiv="X-UA-Compatible"/>
+</head>
+<body>
+<div class="wp_res">
+    <div class="main_res png">
+        <p style="font-size: x-large;font-family: 微软雅黑;text-align: center;position: relative;top: 20px;">更新电影</p>
+        <form action="{:U('update')}" enctype="multipart/form-data" method=post style="position: relative;top:20px">
+            <input name="movie_id" type="hidden" value="{$data['id']}">
+            <div class="form-group">
+                <label for="exampleInputStudentName1"
+                       style="position: relative;width:60px; height:20px;left: 150px;display: table-cell; font-size: large; font-family: 微软雅黑 ">电影名</label>
+                <div style="display: table-cell">
+                    <input class="form-control" id="exampleInputStudentName1" name="name"
+                           required
+                           style="position: relative;width:240px; height:35px;left: 160px;"
+                           type="text" value="{$data['name']}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1"
+                       style="position: relative;width:100px; height:20px;left: 140px;display: table-cell; font-size: large; font-family: 微软雅黑 ">播放时长</label>
+                <div style="display: table-cell">
+                    <input class="form-control" id="exampleInputPassword1" name="play_time"
+                           required
+                           style="position: relative;width:240px; height:35px;left: 120px;" type="text"
+                           value="{$data['play_time']}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword2"
+                       style="position: relative;width:100px; height:20px;left: 140px;display: table-cell; font-size: large; font-family: 微软雅黑 ">上映时间</label>
+                <div style="display: table-cell">
+                    <input class="form-control" id="exampleInputPassword2" name="release_time"
+                           required
+                           style="position: relative;width:240px; height:35px;left: 120px;" type="date"
+                           value="{$data['release_time']}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label style="position: relative;width:100px; height:20px;left: 140px;display: table-cell; font-size: large; font-family: 微软雅黑 ">电影状态</label>
+                <div style="display: table-cell">
+                    <select id="is_hot" name="is_hot" style="position: relative;width:240px; height:35px;left: 120px;">
+                        <if condition="($data['is_hot'] eq 1)">
+                            <option value="0">非热门</option>
+                            <option selected value="1">热门</option>
+                            <else/>
+                            <option selected value="0">非热门</option>
+                            <option value="1">热门</option>
+                        </if>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="info"
+                       style="position: relative;width:60px; height:20px;left: 160px;display: table-cell; font-size: large; font-family: 微软雅黑 ">简介</label>
+                <div style="display: table-cell">
+                    <textarea class="form-control" cols="5" id="info" name="info"
+                              placeholder="简介" rows="3"
+                              style="position: relative;width:240px;left: 160px;"
+                    >{$data['info']}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile"
+                       style="position: relative;width:60px; height:20px;left: 160px;display: table-cell; font-size: large; font-family: 微软雅黑 ">海报</label>
+                <div style="display: table-cell">
+                    <input id="exampleInputFile" name="pic"
+                           style="position: relative;width:240px; height:35px;left: 160px;"
+
+                           type="file">
+                </div>
+            </div>
+            <div class="form-group">
+                <img height="100px" src="__PUBLIC__/movies/{$data['url']}"
+                     style="position: relative;width:240px;left: 200px;" width="100px"/>
+            </div>
+            <div class="form-group">
+                <div style="position: relative;width:60px; height:20px;left: 160px; font-size: large; font-family: 微软雅黑 ">
+                    <input class="btn btn-info" style="display: table-cell;position: relative" type="submit" value="提交">
+                    <input class="btn btn-danger" style="display: table-cell;position: relative;left: 260px;top:-30px"
+                           type="reset"
+                           value="重置">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="light png"></div>
+</div>
+</body>
+</html>

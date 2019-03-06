@@ -14,6 +14,7 @@ class BaseController extends Controller
 
 
     public $default_list = 'list';
+    public $default_item = 'data';
 
 
     public function getCreateTime()
