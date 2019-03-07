@@ -3,7 +3,7 @@
 
 namespace Admin\Controller;
 
-class MovieController extends BaseController
+class MoviesController extends BaseController
 {
     public function index()
     {

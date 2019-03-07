@@ -5,7 +5,7 @@
     <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
           name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <title>rachel-电影列表</title>
+    <title>rachel-影院列表</title>
 
     <link href="__PUBLIC__/assets/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
 
@@ -23,7 +23,7 @@
             <div class="row-fluid">
 
                 <h2 class="heading">
-                    电影列表
+                    影院列表
                 </h2>
             </div> <!-- /row-fluid -->
 
@@ -32,8 +32,8 @@
                 <div class="widget widget-padding span12">
                     <div class="widget-header">
                         <i class="icon-group"></i>
-                        <h5><a href="{:U('Admin/index')}">首页</a></h5><h5>/</h5> <h5><a href="{:U('Movie/addMovie')}">添加电影</a>
-                    </h5>
+                        <h5><a href="{:U('Admins/index')}">首页</a></h5><h5>/</h5> <h5 data-target="#add_cinema"
+                                                                                     data-toggle="modal">添加影院</h5>
                         <div class="widget-buttons">
                             <a class="collapse" data-collapsed="false" data-title="Collapse" href="#"><i
                                     class="icon-chevron-up"></i></a>
@@ -44,10 +44,8 @@
                             <thead>
                             <tr>
                                 <th>编号</th>
-                                <th>电影名</th>
-                                <th>海报</th>
-                                <th>上映时间</th>
-                                <th>热门</th>
+                                <th>影院名</th>
+                                <th>影院地址</th>
                                 <th>更新时间</th>
                                 <th>操作</th>
                             </tr>
@@ -56,35 +54,23 @@
                             <volist id="val" name="list">
                                 <tr>
                                     <td>{$val['id']}</td>
-                                    <td>
-                                        <a href="{:U('Type/total')}?id={$val['typeid']}&name={$val['typename']}">{$val['name']}</a>
+                                    <td><a href="{:U('Type/total')}?id={$val['typeid']}&name={$val['typename']}">{$val['name']}</a>
                                     </td>
-                                    <td><img height="80px" src="__PUBLIC__/movies/{$val['url']}" width="120px"></td>
-                                    <td>{$val['release_time']}</td>
-                                    <td>
-                                        <if condition="$val['is_hot'] eq 1">
-                                            是
-                                            <else/>
-                                            否
-                                        </if>
-                                    </td>
-                                    <td>
-                                        {$val['create_time']}
-                                    </td>
+                                    <td>{$val['address']}</td>
+                                    <td>{$val['create_time']}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="btn btn-small dropdown-toggle" data-toggle="dropdown"
-                                               href="#">
+                                            <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
                                                 操作
                                                 <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu pull-right">
                                                 <li><a href="{:U('del')}?id={$val['id']}"
-                                                       onclick="return confirm('你确定要删除吗？')"><i
-                                                        class="icon-trash"></i>删除</a>
+                                                       onclick="return confirm('你确定要删除吗？')"><i class="icon-trash"></i>删除</a>
                                                 </li>
-                                                <li><a href="{:U('updateMovie')}?id={$val['id']}"><i
-                                                        class="icon-edit"></i>修改</a></li>
+                                                <li><a class="update" data-target="#update_cinema" data-toggle="modal"
+                                                       href="#"
+                                                       id="{$val['id']}"><i class=" icon-edit"></i>修改</a></li>
                                             </ul>
                                         </div>
                                     </td>
@@ -101,42 +87,27 @@
 
     </div><!--/.fluid-container-->
 </div>
-<include file="MovieHall/Modal/update_movie_hall"/>
-<include file="MovieHall/Modal/add_movie_hall"/>
+<include file="Cinemas/Modal/update_cinema"/>
+<include file="Cinemas/Modal/add_cinema"/>
 <script type="text/javascript">
     $(".update").click(function () {
-        const id = $(this).attr('id');
-        $(".movie_hall_id").attr('value', id);
-        $("#update_movie_hall_name").removeAttr("class");
+        var id = $(this).attr('id');
+        $(".cinema_id").attr('value', id);
+        $("#update_cinema_name").removeAttr("class");
         $.ajax({
-            url: "{:U('isValidMovieHall')}",
+            url: "{:U('isValidCinema')}",
             data: {id: id},
             type: 'post',
             cache: false,
             dataType: 'json',
             success: function (res) {
                 if (res['isValidCinema']) {
-                    $("#update_movie_hall_name").attr('value', res['hall']);
+                    $("#update_cinema_name").attr('value', res['name']);
+                    $("#update_cinema_address").attr('value', res['address']);
                 }
             }
         });
     });
-</script>
-<script type="text/javascript">
-    $("#cinema").ready(function () {
-        $.ajax({
-            url: "{:U('getCinemaList')}",
-            cache: false,
-            dataType: 'json',
-            success: function (data) {
-                const arr = eval(data);
-                for (let i = 0; i < arr.length; i++) {
-                    const s = '<option value="' + arr[i]['id'] + '" >' + arr[i]['name'] + '</option>';
-                    $('#cinema').append(s);
-                }
-            }
-        });
-    })
 </script>
 </body>
 </html>

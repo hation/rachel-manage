@@ -3,7 +3,7 @@
 
 namespace Admin\Controller;
 
-class AdminController extends BaseController
+class AdminsController extends BaseController
 {
     public function index()
     {

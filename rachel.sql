@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 06/03/2019 22:38:47
+ Date: 07/03/2019 22:23:01
 */
 
 SET NAMES utf8mb4;
@@ -68,14 +68,14 @@ CREATE TABLE `rachel_cinemas`  (
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '影院地址',
   `create_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of rachel_cinemas
 -- ----------------------------
-INSERT INTO `rachel_cinemas` VALUES (1, '1', '1', '2019-03-04 21:40:37');
+INSERT INTO `rachel_cinemas` VALUES (7, '2', '四川', '2019-03-07 22:20:59');
 INSERT INTO `rachel_cinemas` VALUES (2, '环球', '北京', '2019-03-05 00:05:11');
-INSERT INTO `rachel_cinemas` VALUES (6, 'aaaa', 'aaa', '2019-03-05 23:57:04');
+INSERT INTO `rachel_cinemas` VALUES (6, 'aaaaee', 'aaa', '2019-03-07 22:21:07');
 
 -- ----------------------------
 -- Table structure for rachel_comments
@@ -100,14 +100,14 @@ CREATE TABLE `rachel_movie_halls`  (
   `create_time` datetime(0) NULL DEFAULT NULL,
   `cinema_id` int(11) NOT NULL COMMENT '影院id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of rachel_movie_halls
 -- ----------------------------
 INSERT INTO `rachel_movie_halls` VALUES (1, '国语3D', '2019-03-05 23:04:38', 1);
 INSERT INTO `rachel_movie_halls` VALUES (2, '英语2D', '2019-03-05 23:20:20', 2);
-INSERT INTO `rachel_movie_halls` VALUES (4, 'xihuanss', '2019-03-06 00:19:05', 2);
+INSERT INTO `rachel_movie_halls` VALUES (5, 'cc', '2019-03-07 22:21:28', 7);
 
 -- ----------------------------
 -- Table structure for rachel_movies
@@ -129,7 +129,7 @@ CREATE TABLE `rachel_movies`  (
 -- Records of rachel_movies
 -- ----------------------------
 INSERT INTO `rachel_movies` VALUES (1, '阿丽塔', 'sample.jpg', 1, 'sa', '2019-03-06 20:55:12', 100, '2019-03-28 20:55:19');
-INSERT INTO `rachel_movies` VALUES (6, '是', '2019-03-06/5c7fda341aa1f.png', 0, '是', '2019-03-09 00:00:00', 0, '2019-03-06 22:33:24');
+INSERT INTO `rachel_movies` VALUES (6, '是ss是谁', '2019-03-06/5c7fda341aa1f.png', 1, '是是是', '2019-03-21 00:00:00', 15, '2019-03-06 22:33:24');
 
 -- ----------------------------
 -- Table structure for rachel_orders

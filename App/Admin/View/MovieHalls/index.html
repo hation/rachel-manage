@@ -32,8 +32,8 @@
                 <div class="widget widget-padding span12">
                     <div class="widget-header">
                         <i class="icon-group"></i>
-                        <h5><a href="{:U('Admin/index')}">首页</a></h5><h5>/</h5> <h5 data-target="#add_movie_hall"
-                                                                                    data-toggle="modal">添加影厅</h5>
+                        <h5><a href="{:U('Admins/index')}">首页</a></h5><h5>/</h5> <h5 data-target="#add_movie_hall"
+                                                                                     data-toggle="modal">添加影厅</h5>
                         <div class="widget-buttons">
                             <a class="collapse" data-collapsed="false" data-title="Collapse" href="#"><i
                                     class="icon-chevron-up"></i></a>
@@ -95,8 +95,8 @@
 
     </div><!--/.fluid-container-->
 </div>
-<include file="MovieHall/Modal/update_movie_hall"/>
-<include file="MovieHall/Modal/add_movie_hall"/>
+<include file="MovieHalls/Modal/update_movie_hall"/>
+<include file="MovieHalls/Modal/add_movie_hall"/>
 <script type="text/javascript">
     $(".update").click(function () {
         const id = $(this).attr('id');

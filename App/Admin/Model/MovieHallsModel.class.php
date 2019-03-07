@@ -1,11 +1,11 @@
 <?php
 
 namespace Admin\Model;
-class MovieHallModel extends BaseModel
+class MovieHallsModel extends BaseModel
 {
     protected $tableName = 'movie_halls';
     protected $_link = array(
-        'cinema' => array(
+        'cinemas' => array(
             'mapping_type' => self::BELONGS_TO,
             'class_name' => 'cinema',
         )
