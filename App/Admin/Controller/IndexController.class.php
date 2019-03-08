@@ -31,7 +31,7 @@ class IndexController extends BaseController
             } else {
                 cookie('admin', $username, 3600 * 24 * 7);
             }
-            $url = U('Admin/index');
+            $url = U('Admins/index');
             session('pica', $result['pic']);
             session('aname', $result['name']);
             header("Location: $url");
@@ -41,7 +41,7 @@ class IndexController extends BaseController
     public function logout()
     {
         session(null);
-        $url = U('Home/Index/index');
+        $url = U('Admin/Index/index');
         header("Location: $url");
     }
 }
