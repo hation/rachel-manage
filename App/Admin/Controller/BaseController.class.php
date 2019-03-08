@@ -11,6 +11,7 @@ class BaseController extends Controller
     public $ADMINS_TABLE = "admins";
     public $MOVIE_HALLS_TABLE = "movie_halls";
     public $MOVIES_TABLE = "movies";
+    public $PUBLISH = "publish";
 
 
     public $default_list = 'list';
