@@ -12,6 +12,8 @@ class BaseController extends Controller
     public $MOVIE_HALLS_TABLE = "movie_halls";
     public $MOVIES_TABLE = "movies";
     public $PUBLISH = "publish";
+    public $SELECTED_SEATS = "selected_seats";
+    public $BANNERS = "banners";
 
 
     public $default_list = 'list';
@@ -33,6 +35,36 @@ class BaseController extends Controller
     {
         $this->assign($this->default_list, $res);
         $this->display();
+    }
+
+    public function getList($tableName, $where = '')
+    {
+        return M($tableName)->where($where)->select();
+    }
+
+    public function setList($data, $res)
+    {
+        $data['msg'] = "查询成功";
+        $data['result']['list'] = $res;
+        return $data;
+    }
+
+    public function getItem($tableName, $where = '')
+    {
+        return M($tableName)->where($where)->find();
+    }
+
+    public function setItem($data, $res)
+    {
+        if (empty($res)) {
+            $data['msg'] = "查无结果";
+            $data['code'] = 0;
+        } else {
+            $data['msg'] = "查询成功";
+            $data['code'] = 1;
+            $data['result']['item'] = $res;
+        }
+        return $data;
     }
 
     public function checkAndReturn($result, $successMsg, $errorMsg, $successRedirect = '', $errorRedirect = '')

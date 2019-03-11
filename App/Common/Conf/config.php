@@ -11,8 +11,8 @@ return array(
     'DB_PORT' => 3306, // 端口
     'DB_PREFIX' => 'rachel_',
     'DATA' => array(
-        'code' => 0,
+        'code' => 1,
         'msg' => '',
-        'data' => array()
+        'result' => array(),
     )
 );
