@@ -29,6 +29,12 @@ class BaseController extends Controller
         return $data;
     }
 
+    public function displayDefaultList($res)
+    {
+        $this->assign($this->default_list, $res);
+        $this->display();
+    }
+
     public function checkAndReturn($result, $successMsg, $errorMsg, $successRedirect = '', $errorRedirect = '')
     {
         if ($result) {
@@ -36,6 +42,11 @@ class BaseController extends Controller
         } else {
             $this->error($errorMsg, $errorRedirect);
         }
+    }
+
+    public function saveData($tableName, $data)
+    {
+        return M($tableName)->add($data);
     }
 
     public function addData($result)

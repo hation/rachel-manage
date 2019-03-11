@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8"/>
+    <title>发布电影</title>
+    <include file="Public/headerlist"/>
+    <link href="__PUBLIC__/assets/css/xunlei.css" rel="stylesheet">
+    <link href="__PUBLIC__/assets/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/assets/stylesheets/main.css" rel="stylesheet">
+    <meta content="IE=7" http-equiv="X-UA-Compatible"/>
+</head>
+<body>
+<div class="wp_res">
+    <div class="main_res png">
+        <p style="font-size: x-large;font-family: 微软雅黑;text-align: center;position: relative;top: 20px;">发布电影</p>
+        <form action="{:U('add')}" enctype="multipart/form-data" method=post style="position: relative;top:20px">
+            <div class="form-group">
+                <label
+                        style="position: relative;width:60px; height:20px;left: 150px;display: table-cell; font-size: large; font-family: 微软雅黑 ">电影名</label>
+                <div style="display: table-cell">
+                    <select id="movies_id" name="movies_id" required
+                            style="position: relative;width:240px; height:35px;left: 160px;">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label
+                        style="position: relative;width:100px; height:20px;left: 150px;display: table-cell; font-size: large; font-family: 微软雅黑 ">影院名</label>
+                <div style="display: table-cell">
+                    <select id="cinemas_id" name="cinemas_id" required
+                            style="position: relative;width:240px; height:35px;left: 120px;">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label
+                        style="position: relative;width:100px; height:20px;left: 150px;display: table-cell; font-size: large; font-family: 微软雅黑 ">影厅名</label>
+                <div style="display: table-cell">
+                    <select id="movie_halls_id" name="movie_halls_id" required
+                            style="position: relative;width:240px; height:35px;left: 120px;">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="price"
+                       style="position: relative;width:100px; height:20px;left: 155px;display: table-cell; font-size: large; font-family: 微软雅黑 ">单价</label>
+                <div style="display: table-cell">
+                    <input class="form-control" id="price" name="price"
+                           required style="position: relative;width:240px; height:35px;left: 120px;"
+                           type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="show_time"
+                       style="position: relative;width:80px; height:20px;left: 140px;display: table-cell; font-size: large; font-family: 微软雅黑 ">播放时间</label>
+                <div style="display: table-cell">
+                    <input class="form-control" id="show_time" name="show_time"
+                           required style="position: relative;width:240px;left: 140px;"
+                           type="datetime-local">
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="position: relative;width:60px; height:20px;left: 160px; font-size: large; font-family: 微软雅黑 ">
+                    <input class="btn btn-info" style="display: table-cell;position: relative" type="submit" value="提交">
+                    <input class="btn btn-danger" style="display: table-cell;position: relative;left: 260px;top:-30px"
+                           type="reset"
+                           value="重置">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="light png"></div>
+</div>
+<script type="text/javascript">
+    $("#movies_id").ready(function () {
+        $.ajax({
+            url: "{:U('getAllMovies')}",
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                const arr = eval(data);
+                for (let i = 0; i < arr.length; i++) {
+                    const s = '<option value="' + arr[i]['id'] + '" >' + arr[i]['name'] + '</option>';
+                    $('#movies_id').append(s);
+                }
+            }
+        });
+    });
+    $("#cinemas_id").ready(function () {
+        $.ajax({
+            url: "{:U('getAllCinemas')}",
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                const arr = eval(data);
+                for (let i = 0; i < arr.length; i++) {
+                    let s = "";
+                    if (i === 0) {
+                        s = '<option value="' + arr[i]['id'] + '" selected >' + arr[i]['name'] + '</option>';
+                        getMovieHalls(arr[i]['id']);
+                    } else {
+                        s = '<option value="' + arr[i]['id'] + '" >' + arr[i]['name'] + '</option>';
+                    }
+                    $('#cinemas_id').append(s);
+                }
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#cinemas_id').change(function () {
+            const cinemas_id = $(this).children('option:selected').val();
+            getMovieHalls(cinemas_id);
+        })
+    });
+
+    function getMovieHalls(cinemas_id) {
+        $.ajax({
+            url: "{:U('getAllMovieHalls')}",
+            cache: false,
+            data: {id: cinemas_id},
+            dataType: 'json',
+            success: function (data) {
+                const arr = eval(data);
+                $('#movie_halls_id').html("");
+                for (let i = 0; i < arr.length; i++) {
+                    const s = '<option value="' + arr[i]['id'] + '" >' + arr[i]['hall'] + '</option>';
+                    $('#movie_halls_id').append(s);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>
