@@ -20,7 +20,7 @@ class MovieHallsController extends BaseController
 
     public function addMovieHall()
     {
-        $data['cinema_id'] = I('post.cinema');
+        $data['cinemas_id'] = I('post.cinema');
         $data['hall'] = I('post.add_movie_hall_name');
         $data = $this->addCreateTime($data);
         $res = M($this->MOVIE_HALLS_TABLE)->add($data);

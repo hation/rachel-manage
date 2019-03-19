@@ -8,7 +8,7 @@ class MovieHallsModel extends BaseModel
         'cinemas' => array(
             'mapping_type' => self::BELONGS_TO,
             'class_name' => 'cinemas',
-            'foreign_key' => 'cinema_id',
+            'foreign_key' => 'cinemas_id',
         ),
         'movies' => array(
             'mapping_type' => self::MANY_TO_MANY,
