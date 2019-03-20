@@ -14,6 +14,7 @@ class BaseController extends Controller
     public $PUBLISH = "publish";
     public $SELECTED_SEATS = "selected_seats";
     public $BANNERS = "banners";
+    public $COMMENTS = "comments";
 
 
     public $default_list = 'list';

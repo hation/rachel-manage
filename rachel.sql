@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 19/03/2019 13:34:00
+ Date: 20/03/2019 23:08:49
 */
 
 SET NAMES utf8mb4;
@@ -86,12 +86,19 @@ INSERT INTO `rachel_cinemas` VALUES (17, '星空国际影城', '青白江区华�
 DROP TABLE IF EXISTS `rachel_comments`;
 CREATE TABLE `rachel_comments`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '评论id',
-  `user_id` int(11) NOT NULL COMMENT '用户id',
-  `movie_id` int(11) NOT NULL COMMENT '电影id',
+  `users_id` int(11) NOT NULL COMMENT '用户id',
+  `movies_id` int(11) NOT NULL COMMENT '电影id',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评论内容',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '评论时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of rachel_comments
+-- ----------------------------
+INSERT INTO `rachel_comments` VALUES (1, 1, 7, 'wdqwe', '2019-03-20 22:55:53');
+INSERT INTO `rachel_comments` VALUES (2, 1, 7, 'sfdasfasf', '2019-03-20 22:59:06');
+INSERT INTO `rachel_comments` VALUES (3, 1, 7, 'sajkdnjsaksdajsdoijasodi', '2019-03-20 23:08:03');
 
 -- ----------------------------
 -- Table structure for rachel_movie_halls
@@ -248,7 +255,7 @@ CREATE TABLE `rachel_selected_seats`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `rachel_users`;
 CREATE TABLE `rachel_users`  (
-  `uid` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名',
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
   `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联系方式',
@@ -256,7 +263,12 @@ CREATE TABLE `rachel_users`  (
   `gender` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '性别(0->女，1->男)',
   `info` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '个人简介',
   `create_time` datetime(0) NULL DEFAULT NULL,
-  PRIMARY KEY (`uid`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of rachel_users
+-- ----------------------------
+INSERT INTO `rachel_users` VALUES (1, 'wqweqw', '11', '11', '11', '0', '11', '2019-03-20 22:55:02');
 
 SET FOREIGN_KEY_CHECKS = 1;
