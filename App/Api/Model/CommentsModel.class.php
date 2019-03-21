@@ -14,7 +14,11 @@ class CommentsModel extends BaseModel
             'mapping_type' => self::BELONGS_TO,
             'class_name' => 'movies',
             'foreign_key' => 'movies_id'
+        ),
+        'cinemas' => array(
+            'mapping_type' => self::BELONGS_TO,
+            'class_name' => 'cinemas',
+            'foreign_key' => 'cinemas_id'
         )
-
     );
 }
