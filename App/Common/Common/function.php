@@ -52,3 +52,33 @@ function uploadImage($file, $rootPath = './Public/Upload/')
     }
     return $info;
 }
+
+function genRandCode($length)
+{
+    $str = null;
+    $strPol = "0123456789";
+    $max = strlen($strPol) - 1;
+
+    for ($i = 0; $i < $length; $i++) {
+        $str .= $strPol[rand(0, $max)];//rand($min,$max)生成介于min和max两个数之间的一个随机整数
+    }
+    return $str;
+}
+
+function createdOrderNumber()
+{
+    $yCode = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+        'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+    $nowYear = 2017;
+    if ((intval(date('Y')) - $nowYear) > 25) {
+
+        $nowYear = intval(date('Y'));
+    }
+    $OrderNumber = $yCode[intval(date('Y')) - $nowYear]
+        . strtoupper(dechex(date('m')))
+        . date('d') . substr(time(), -5)
+        . substr(microtime(), 2, 5)
+        . sprintf('%02d', rand(0, 99));
+
+    return $OrderNumber;
+}
