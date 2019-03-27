@@ -75,10 +75,20 @@ class CinemasController extends BaseController
     {
         $data = C('DATA');
         $whereMovieHalls['id'] = I('request.id');
-        $wherePublish['publish'] = I('request.id');
-        $data['result']['item'] = $this->getItem($this->MOVIE_HALLS_TABLE, $whereMovieHalls);
-        $data['result']['list'] = $this->getList($this->SELECTED_SEATS, $wherePublish);
-        $data['msg'] = "查询成功";
+        $wherePublish['movie_halls_id'] = I('request.id');
+        $wherePublish['cinemas_id'] = I('request.cinema_id');
+        $wherePublish['movies_id'] = I('request.movie_id');
+        $publish = $this->getItem($this->PUBLISH, $wherePublish);
+        if (!empty($publish)) {
+            $selectedSeat['publish_id'] = $publish['id'];
+
+            $data['result']['item'] = $this->getItem($this->MOVIE_HALLS_TABLE, $whereMovieHalls);
+            $data['result']['list'] = $this->getList($this->SELECTED_SEATS, $selectedSeat);
+            $data['msg'] = "查询成功";
+        } else {
+            $data['msg'] = "查询失败";
+            $data['code'] = 0;
+        }
         $this->jsonReturn($data);
     }
 }
