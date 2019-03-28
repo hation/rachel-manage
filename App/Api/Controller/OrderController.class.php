@@ -59,4 +59,20 @@ class OrderController extends BaseController
         }
         $this->jsonReturn($data);
     }
+
+    public function orderList()
+    {
+        $where['users_id'] = I('request.id');
+        $res = M($this->ORDERS)->where($where)->select();
+        if (!empty($res)) {
+            for ($i = 0, $size = count($res); $i < $size; $i++) {
+                $publish = M($this->PUBLISH)->where(array("order_number" => $res[$i]['order_number']))->find();
+                $movie = M($this->MOVIES_TABLE)->where(array("id" => $publish['movies_id']))->find();
+                $res[$i]['movie_name'] = $movie['name'];
+                $res[$i]['play_time'] = $movie['play_time'];
+                $res[$i]['url'] = $movie['url'];
+            }
+        }
+        return $this->jsonReturn($res);
+    }
 }
