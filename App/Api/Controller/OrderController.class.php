@@ -62,7 +62,8 @@ class OrderController extends BaseController
 
     public function orderList()
     {
-        $where['users_id'] = I('request.id');
+        $data = C('DATA');
+        $where['users_id'] = I('request.user_id');
         $res = M($this->ORDERS)->where($where)->select();
         if (!empty($res)) {
             for ($i = 0, $size = count($res); $i < $size; $i++) {
@@ -71,8 +72,14 @@ class OrderController extends BaseController
                 $res[$i]['movie_name'] = $movie['name'];
                 $res[$i]['play_time'] = $movie['play_time'];
                 $res[$i]['url'] = $movie['url'];
+                $res[$i]['show_time'] = $publish['show_time'];
             }
+            $data['result']['list'] = $res;
+            $data['msg'] = "查询成功";
+        } else {
+            $data['msg'] = "查询失败";
+            $data['code'] = 0;
         }
-        return $this->jsonReturn($res);
+        return $this->jsonReturn($data);
     }
 }
