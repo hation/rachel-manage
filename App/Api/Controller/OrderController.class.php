@@ -77,8 +77,8 @@ class OrderController extends BaseController
             $data['result']['list'] = $res;
             $data['msg'] = "查询成功";
         } else {
-            $data['msg'] = "查询失败";
-            $data['code'] = 0;
+            $data['msg'] = "暂无订单";
+            $data['result']['list'] = array();
         }
         return $this->jsonReturn($data);
     }
