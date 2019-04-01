@@ -14,7 +14,6 @@ class CommentsController extends BaseController
 
         $data = C('DATA');
         $where['movies_id'] = I('request.movie_id');
-        $where['cinemas_id'] = I('request.cinema_id');
         $data['result']['list'] = D($this->COMMENTS)->where($where)->relation("users")->select();
         $this->jsonReturn($data);
     }
