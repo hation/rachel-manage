@@ -20,10 +20,9 @@ class CommentsController extends BaseController
 
     public function userComments()
     {
-
         $data = C('DATA');
         $where['users_id'] = I('request.id');
-        $data['result']['list'] = D($this->COMMENTS)->where($where)->relation(array("movies", "cinemas"))->select();
+        $data['result']['list'] = D($this->COMMENTS)->where($where)->relation(array("movies"))->select();
         $this->jsonReturn($data);
     }
 
