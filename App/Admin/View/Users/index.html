@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>rachel-用户列表</title>
+
+    <link href="__PUBLIC__/assets/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <include file="Public/headerlist"/>
+    <link href="__PUBLIC__/assets/stylesheets/style1.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="wrap">
+    <include file="Public/top"/>
+    <div class="container-fluid">
+
+        <!-- Main window -->
+        <div class="main_container" id="users_page">
+
+            <div class="row-fluid">
+
+                <h2 class="heading">
+                    用户列表
+                </h2>
+            </div> <!-- /row-fluid -->
+
+            <!--此处往下为代码改写部分-->
+            <div class="row-fluid">
+                <div class="widget widget-padding span12">
+                    <div class="widget-header">
+                        <i class="icon-group"></i>
+                        <h5><a href="{:U('Admins/index')}">首页</a></h5>
+                        </h5>
+                        <div class="widget-buttons">
+                            <a class="collapse" data-collapsed="false" data-title="Collapse" href="#"><i
+                                    class="icon-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-bodicon-group table-responsive " style="padding-bottom: 45px">
+                        <table class="table table-condensed table-striped table-bordered dataTable" id="users">
+                            <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>用户名</th>
+                                <th>黑名单</th>
+                                <th>密码</th>
+                                <th>支付密码</th>
+                                <th>余额</th>
+                                <th>头像</th>
+                                <th>注册时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <volist id="val" name="list">
+                                <tr>
+                                    <td>{$val['id']}</td>
+                                    <td>
+                                        <a href="#">{$val['username']}</a>
+                                    </td>
+                                    <td>
+                                        <if condition="$val['is_black'] eq 1">
+                                            否
+                                            <else/>
+                                            是
+                                        </if>
+                                    </td>
+                                    <td>{$val['password']}</td>
+                                    <td>{$val['pay_password']}</td>
+                                    <td>{$val['money']}</td>
+                                    <td><img height="80px" src="__PUBLIC__/users/{$val['portrait']}" width="120px"></td>
+                                    <td>
+                                        {$val['create_time']}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn btn-small dropdown-toggle" data-toggle="dropdown"
+                                               href="#">
+                                                操作
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li><a href="{:U('del')}?id={$val['id']}"
+                                                       onclick="return confirm('你确定要更新吗？')"><i
+                                                        class="icon-trash"></i>拉黑</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                    </div> <!-- /widget-body -->
+                </div> <!-- /widget -->
+            </div> <!-- /row-fluid -->
+
+        </div>
+        <!-- /Main window -->
+
+    </div><!--/.fluid-container-->
+</div>
+</body>
+</html>
