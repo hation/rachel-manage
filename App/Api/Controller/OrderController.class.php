@@ -42,7 +42,9 @@ class OrderController extends BaseController
                         $seats[$i]['create_time'] = $this->getCreateTime();
                     }
                     $seatsRes = M($this->SELECTED_SEATS)->addAll($seats);
-                    if ($orderRes && $seatsRes) {
+                    $userRes['money'] = (double)$userRes['money'] - (double)$publishRes['price'];
+                    $userRe = M($this->USERS)->save($userRes);
+                    if ($orderRes && $seatsRes && $userRe) {
                         $data['msg'] = "购买成功";
                     } else {
                         $data['msg'] = "购买失败";
