@@ -24,4 +24,18 @@ class UsersController extends BaseController
         $re = M($this->USERS)->save($r);
         $this->updateData($re);
     }
+
+    public function userComments()
+    {
+        $res = D($this->COMMENTS)->relation(true)->select();
+        $this->assign($this->default_list, $res);
+        $this->display();
+    }
+
+    public function delComment()
+    {
+        $id = I('get.id');
+        $r = M($this->COMMENTS)->where(array('id' => $id))->delete();
+        $this->delData($r);
+    }
 }
