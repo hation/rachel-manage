@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 20/03/2019 23:08:49
+ Date: 04/04/2019 00:05:20
 */
 
 SET NAMES utf8mb4;
@@ -88,17 +88,27 @@ CREATE TABLE `rachel_comments`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '评论id',
   `users_id` int(11) NOT NULL COMMENT '用户id',
   `movies_id` int(11) NOT NULL COMMENT '电影id',
+  `cinemas_id` int(11) NOT NULL COMMENT '影院id',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评论内容',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '评论时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of rachel_comments
 -- ----------------------------
-INSERT INTO `rachel_comments` VALUES (1, 1, 7, 'wdqwe', '2019-03-20 22:55:53');
-INSERT INTO `rachel_comments` VALUES (2, 1, 7, 'sfdasfasf', '2019-03-20 22:59:06');
-INSERT INTO `rachel_comments` VALUES (3, 1, 7, 'sajkdnjsaksdajsdoijasodi', '2019-03-20 23:08:03');
+INSERT INTO `rachel_comments` VALUES (1, 1, 7, 8, 'wdqwe', '2019-03-20 22:55:53');
+INSERT INTO `rachel_comments` VALUES (2, 1, 7, 8, 'sfdasfasf', '2019-03-20 22:59:06');
+INSERT INTO `rachel_comments` VALUES (3, 1, 7, 8, 'sajkdnjsaksdajsdoijasodi', '2019-03-20 23:08:03');
+INSERT INTO `rachel_comments` VALUES (4, 1, 7, 8, 'sajkdnjsaksdajsdoijasodi', '2019-03-21 22:53:12');
+INSERT INTO `rachel_comments` VALUES (5, 1, 7, 8, 'ss', '2019-03-21 23:04:00');
+INSERT INTO `rachel_comments` VALUES (6, 1, 10, 8, 'ww', '2019-03-21 23:05:41');
+INSERT INTO `rachel_comments` VALUES (7, 1, 7, 8, 'SDS\n', '2019-04-01 20:07:05');
+INSERT INTO `rachel_comments` VALUES (8, 1, 7, 8, 'did\n', '2019-04-01 20:08:13');
+INSERT INTO `rachel_comments` VALUES (9, 1, 7, 8, '33e\n', '2019-04-01 20:40:24');
+INSERT INTO `rachel_comments` VALUES (10, 1, 8, 8, 'sees\n', '2019-04-01 21:06:52');
+INSERT INTO `rachel_comments` VALUES (11, 1, 10, 8, 'Dr\n', '2019-04-01 21:07:43');
+INSERT INTO `rachel_comments` VALUES (12, 1, 7, 9, '喜欢', '2019-04-02 21:43:14');
 
 -- ----------------------------
 -- Table structure for rachel_movie_halls
@@ -193,13 +203,26 @@ DROP TABLE IF EXISTS `rachel_orders`;
 CREATE TABLE `rachel_orders`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单id',
   `order_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单号',
-  `user_id` int(11) NOT NULL COMMENT '用户id',
+  `users_id` int(11) NOT NULL COMMENT '用户id',
   `pay_status` int(11) NOT NULL COMMENT '支付状态(0->未支付 1->支付成功 2->支付失败)',
   `cdkey` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '兑换码',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `pay_time` datetime(0) NULL DEFAULT NULL COMMENT '支付时间',
+  `price` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '总价格',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 39 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of rachel_orders
+-- ----------------------------
+INSERT INTO `rachel_orders` VALUES (30, 'C328052631442852', 1, 1, '347894', '2019-03-28 00:47:43', '100.0');
+INSERT INTO `rachel_orders` VALUES (31, 'C328786867296671', 1, 1, '664026', '2019-03-28 21:11:26', '80.0');
+INSERT INTO `rachel_orders` VALUES (32, 'C328787000673462', 1, 1, '436602', '2019-03-28 21:11:40', '80.0');
+INSERT INTO `rachel_orders` VALUES (33, 'C328788603020138', 1, 1, '030756', '2019-03-28 21:14:20', '80.0');
+INSERT INTO `rachel_orders` VALUES (34, 'C328788660087143', 1, 1, '757975', '2019-03-28 21:14:26', '80.0');
+INSERT INTO `rachel_orders` VALUES (35, 'C401224436951261', 1, 1, '217590', '2019-04-01 20:40:43', '80.0');
+INSERT INTO `rachel_orders` VALUES (36, 'C402125018226587', 1, 1, '455925', '2019-04-02 21:41:41', '80.0');
+INSERT INTO `rachel_orders` VALUES (37, 'C402125824191329', 1, 1, '190582', '2019-04-02 21:43:02', '10.0');
+INSERT INTO `rachel_orders` VALUES (38, 'C403022014363378', 1, 1, '810474', '2019-04-03 22:36:41', '80.0');
 
 -- ----------------------------
 -- Table structure for rachel_publish
@@ -242,13 +265,31 @@ INSERT INTO `rachel_publish` VALUES (20, 43, 7, 17, '33', '2019-03-11 11:11:00',
 DROP TABLE IF EXISTS `rachel_selected_seats`;
 CREATE TABLE `rachel_selected_seats`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '座位id',
-  `order_id` int(255) NULL DEFAULT NULL COMMENT '订单id',
+  `order_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单号',
   `publish_id` int(11) NOT NULL COMMENT '发布电影id',
   `x` int(11) NOT NULL COMMENT '第几排',
   `y` int(11) NOT NULL COMMENT '第几行',
   `create_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 31 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of rachel_selected_seats
+-- ----------------------------
+INSERT INTO `rachel_selected_seats` VALUES (17, 'C328042776840203', 14, 7, 4, '2019-03-28 00:31:17');
+INSERT INTO `rachel_selected_seats` VALUES (18, 'C328042776840203', 14, 6, 4, '2019-03-28 00:31:17');
+INSERT INTO `rachel_selected_seats` VALUES (19, 'C328042776840203', 14, 6, 5, '2019-03-28 00:31:17');
+INSERT INTO `rachel_selected_seats` VALUES (20, 'C328045662230781', 5, 5, 5, '2019-03-28 00:36:06');
+INSERT INTO `rachel_selected_seats` VALUES (21, 'C328045662230781', 5, 7, 5, '2019-03-28 00:36:06');
+INSERT INTO `rachel_selected_seats` VALUES (22, 'C328052631442852', 8, 6, 5, '2019-03-28 00:47:43');
+INSERT INTO `rachel_selected_seats` VALUES (23, 'C328786867296671', 5, 6, 3, '2019-03-28 21:11:26');
+INSERT INTO `rachel_selected_seats` VALUES (24, 'C328787000673462', 5, 6, 4, '2019-03-28 21:11:40');
+INSERT INTO `rachel_selected_seats` VALUES (25, 'C328788603020138', 5, 6, 5, '2019-03-28 21:14:20');
+INSERT INTO `rachel_selected_seats` VALUES (26, 'C328788660087143', 5, 6, 6, '2019-03-28 21:14:26');
+INSERT INTO `rachel_selected_seats` VALUES (27, 'C401224436951261', 6, 5, 6, '2019-04-01 20:40:43');
+INSERT INTO `rachel_selected_seats` VALUES (28, 'C402125018226587', 5, 8, 6, '2019-04-02 21:41:41');
+INSERT INTO `rachel_selected_seats` VALUES (29, 'C402125824191329', 9, 6, 3, '2019-04-02 21:43:02');
+INSERT INTO `rachel_selected_seats` VALUES (30, 'C403022014363378', 6, 5, 3, '2019-04-03 22:36:41');
 
 -- ----------------------------
 -- Table structure for rachel_users
@@ -260,15 +301,17 @@ CREATE TABLE `rachel_users`  (
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
   `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联系方式',
   `portrait` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
-  `gender` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '性别(0->女，1->男)',
-  `info` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '个人简介',
+  `money` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '余额',
   `create_time` datetime(0) NULL DEFAULT NULL,
+  `pay_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '支付密码',
+  `is_black` int(11) NOT NULL DEFAULT 1 COMMENT '1->正常 0->拉黑',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of rachel_users
 -- ----------------------------
-INSERT INTO `rachel_users` VALUES (1, 'wqweqw', '11', '11', '11', '0', '11', '2019-03-20 22:55:02');
+INSERT INTO `rachel_users` VALUES (1, 'zmx', '11', '11', '11', '4920', '2019-03-20 22:55:02', '111111', 1);
+INSERT INTO `rachel_users` VALUES (2, '1', '1', '1', 'default8.jpg', '10000', '2019-04-02 00:12:03', '1', 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
