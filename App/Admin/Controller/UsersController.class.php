@@ -38,4 +38,18 @@ class UsersController extends BaseController
         $r = M($this->COMMENTS)->where(array('id' => $id))->delete();
         $this->delData($r);
     }
+
+    public function userOrders()
+    {
+        $res = D($this->ORDERS)->relation(true)->select();
+        $this->assign($this->default_list, $res);
+        $this->display();
+    }
+
+    public function delOrder()
+    {
+        $id = I('get.id');
+        $r = M($this->ORDERS)->where(array('id' => $id))->delete();
+        $this->delData($r);
+    }
 }
