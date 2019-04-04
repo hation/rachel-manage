@@ -38,7 +38,6 @@ class UserController extends BaseController
         $where['phone'] = I('request.phone');
         $where['money'] = "10000";
         $where = $this->addCreateTime($where);
-        $path = './Public/users/';
         $where['portrait'] = "default" . genRandCode(1) . ".jpg";
         $res = M($this->USERS)->add($where);
         if ($res) {
