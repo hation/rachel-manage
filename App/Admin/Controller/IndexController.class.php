@@ -17,7 +17,7 @@ class IndexController extends BaseController
         $re = I('post.re');
         //echo $re;
         // echo $password;
-        $result = M('admins')->where(array('name' => $username, 'password' => md5($password)))->find();
+        $result = M('admins')->where(array('name' => $username, 'password' => $password))->find();
         if (!empty($_COOKIE['password'])) {
             cookie('password', null);
         }
@@ -32,7 +32,7 @@ class IndexController extends BaseController
                 cookie('admin', $username, 3600 * 24 * 7);
             }
             $url = U('Admins/index');
-            session('pica', $result['pic']);
+            session('pica', $result['portrait']);
             session('aname', $result['name']);
             header("Location: $url");
         }

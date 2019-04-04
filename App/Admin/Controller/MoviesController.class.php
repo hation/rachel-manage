@@ -26,6 +26,9 @@ class MoviesController extends BaseController
         $data['release_time'] = I('post.release_time');
         $data['is_hot'] = I('post.is_hot');
         $data['info'] = I('post.info');
+        if (!$fileInfo) {// 上传错误提示错误信息
+            $this->error("图片上传失败");
+        }
         $data['url'] = $fileInfo['savepath'] . $fileInfo['savename'];
         $data = $this->addCreateTime($data);
         $res = M($this->MOVIES_TABLE)->add($data);
